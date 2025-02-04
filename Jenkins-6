@@ -91,5 +91,10 @@ pipeline {
         """
       }
     }
+    stage("deployment acceptance") {
+      steps {
+        input 'Trigger Deployment Pipeline'
+      }
+    }
   }
 }
