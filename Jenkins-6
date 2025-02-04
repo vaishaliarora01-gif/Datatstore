@@ -91,9 +91,14 @@ pipeline {
         """
       }
     }
-    stage("deployment acceptance") {
+    stage("deployment-acceptance") {
       steps {
         input 'Trigger Deployment Pipeline'
+      }
+    }
+    stage("triggering-deployment -ob") {
+      steps {
+        build job: "common-deployment", parameters: [string(name: "App_Name", value: "datastore-deploy"), string(name: "App_Version", value: "${params.App_Version}")]
       }
     }
   }
