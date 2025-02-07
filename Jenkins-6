@@ -106,10 +106,27 @@ pipeline {
         input 'Trigger Deployment Pipeline'
       }
     }
-    stage("triggering-deployment -ob") {
+    stage("triggering-deployment-job") {
       steps {
         build job: "common-deployment", parameters: [string(name: "App_Name", value: "datastore-deploy"), string(name: "App_Version", value: "${params.App_Version}")]
       }
+    }
+  }
+  post {
+    always {
+      slackSend (color: '#FFFF00', message: "BUILD ${env.BUILD_NUMBER}: Job ${env.JOB_NAME} ended.")
+    }
+    success {
+      slackSend (color: '#00FF00', message: "SUCCESS: Build ${env.BUILD_NUMBER} successfully completed. <${env.BUILD_URL}|Open>")
+    }
+    failure {
+      slackSend (color: '#FF0000', message: "FAILURE: Build ${env.BUILD_NUMBER} failed. <${env.BUILD_URL}|Open>")
+    }
+    unstable {
+      slackSend (color: '#FFFF00', message: "UNSTABLE: Build ${env.BUILD_NUMBER} is unstable. <${env.BUILD_URL}|Open>")
+    }
+    aborted {
+      slackSend (color: '#FF00FF', message: "ABORTED: Build ${env.BUILD_NUMBER} was aborted. <${env.BUILD_URL}|Open>")
     }
   }
 }
