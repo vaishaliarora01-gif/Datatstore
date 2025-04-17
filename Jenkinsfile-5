@@ -51,6 +51,7 @@ pipeline{
         }
         stage("Trivy docker image scan"){
             steps{
+                echo "trivy"
                 // sh """
                 //   //clean content
                 // //   docker system prune -af --volumes
