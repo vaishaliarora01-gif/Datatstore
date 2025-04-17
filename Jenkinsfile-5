@@ -49,7 +49,8 @@ pipeline{
             steps{
                 sh """
                   echo "scanning docker image"
-                  trivy image scan datastore:"${App_version}"
+                  trivy image datastore:"${App_version}"
+                  trivy repo "https://github.com/vaishaliarora01-gif/Datatstore.git"
                   echo "scanning docker image complete"
                 """
             }
