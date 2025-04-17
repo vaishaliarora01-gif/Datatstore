@@ -2,17 +2,19 @@ pipeline{
     agent any
     stages{
         stage("checkout code"){
-             steps{
+            steps{
                 //Adding file to github
                 git branch: 'main', credentialsId: 'aece8a14-0bef-4cdf-9306-1a275ae44a1d', url: 'https://github.com/vaishaliarora01-gif/Datatstore.git'
              }
         }
         stage("building application"){
-            sh """
-               echo "----------Build package------------"
-               mvn clean package
-               echo "----Application build successfully----"
-            """
+            steps{ 
+                 sh """
+                    echo "----------Build package------------"
+                    mvn clean package
+                    echo "----Application build successfully----"
+                 """
+             }
         }
     }
 }
