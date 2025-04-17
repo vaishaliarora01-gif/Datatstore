@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    stages{
+        stage("checkout code"){
+             steps{
+                //Adding file to github
+                git branch: 'main', credentialsId: 'aece8a14-0bef-4cdf-9306-1a275ae44a1d', url: 'https://github.com/vaishaliarora01-gif/Datatstore.git'
+             }
+        }
+    }
+}
