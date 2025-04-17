@@ -88,5 +88,14 @@ pipeline{
                 """
             }
         }
+        stage("Cleanup activities"){
+            steps{
+                sh """
+                   echo "----------cleanup Jenkins  machine------"
+                   docker system prune -a
+                   echo "clean up success"
+                """
+            }
+        }
     }
 }
