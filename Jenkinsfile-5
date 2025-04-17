@@ -80,7 +80,7 @@ pipeline{
             steps{
                 sh """
                   echo "Logging in to dockerhub"
-                  docker login -u $DOCERHUB_CREDENTIALS_USR --password $DOCKERHUB_CREDENTIALS_PSW
+                  docker login -u $DOCKERHUB_CREDENTIALS_USR --password $DOCKERHUB_CREDENTIALS_PSW
                   echo "Loggin success"
                   echo "---------Pushong dockerimage to dockerhub..............."
                   docker push vaishu01/datastore:"${App_Version}
