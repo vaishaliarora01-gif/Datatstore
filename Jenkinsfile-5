@@ -83,7 +83,7 @@ pipeline{
                   docker login -u $DOCKERHUB_CREDENTIALS_USR --password $DOCKERHUB_CREDENTIALS_PSW
                   echo "Loggin success"
                   echo "---------Pushong dockerimage to dockerhub..............."
-                  docker push vaishu01/datastore:"${App_Version}
+                  docker push vaishu01/datastore:"${App_Version}"
                   echo "---------Image push successfully--------------"
                 """
             }
