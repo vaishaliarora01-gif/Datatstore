@@ -48,6 +48,13 @@ pipeline{
         stage("Trivy docker image scan"){
             steps{
                 sh """
+                  //clean content
+                  docker system prune -af --volumes
+                  rm -rf /home/jenkins/.cache/trivy
+                  rm -rf /home/jenkins/workspace/*
+                  rm -rf /home/jenkins/.m2/repository
+                  sh 'rm -rf ~/.cache/trivy || true'
+
                   echo "scanning docker image"
                   trivy image datastore:"${App_version}"
                   echo "scanning docker image complete"
