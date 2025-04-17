@@ -9,10 +9,21 @@ pipeline{
         }
         stage("building application"){
             steps{ 
+                //Creating a jar package
                  sh """
                     echo "----------Build package------------"
                     mvn clean package
                     echo "----Application build successfully----"
+                 """
+             }
+        }
+        stage("executing testcases"){
+            steps{ 
+                //Creating testcases
+                 sh """
+                    echo "----------Executing Testcases------------"
+                    mvn test
+                    echo "----Testcase Execution Completed----"
                  """
              }
         }
